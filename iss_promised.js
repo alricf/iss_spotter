@@ -9,7 +9,7 @@ const fetchMyIP = function() {
   return request('https://api.ipify.org?format=json');
 };
 
-/* 
+/*
  * Makes a request to ipwho.is using the provided IP address to get its geographical information (latitude/longitude)
  * Input: JSON string containing the IP address
  * Returns: Promise of request for lat/lon
@@ -26,7 +26,7 @@ const fetchCoordsByIP = function(body) {
  */
 const fetchISSFlyOverTimes = function(body) {
   const { latitude, longitude } = JSON.parse(body);
-  url = `https://iss-pass.herokuapp.com/json/?lat=${latitude}&lon=${longitude}`;
+  const url = `https://iss-pass.herokuapp.com/json/?lat=${latitude}&lon=${longitude}`;
   return request(url);
 };
 
@@ -34,14 +34,14 @@ const fetchISSFlyOverTimes = function(body) {
  * Input: None
  * Returns: Promise for fly over data for users location
  */
-const nextISSTimesForMyLocation =function(){
+const nextISSTimesForMyLocation = function() {
   return fetchMyIP()
-  .then(fetchCoordsByIP)
-  .then(fetchISSFlyOverTimes)
-  .then((data) => {
-    const { response } = JSON.parse(data);
-    return response;
-  });
+    .then(fetchCoordsByIP)
+    .then(fetchISSFlyOverTimes)
+    .then((data) => {
+      const { response } = JSON.parse(data);
+      return response;
+    });
 };
 
 module.exports = { nextISSTimesForMyLocation };
