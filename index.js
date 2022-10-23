@@ -30,4 +30,3 @@ nextISSTimesForMyLocation((error, passTimes) => {
   // success, print out the details!
   printPassTimes(passTimes);
 });
-
